@@ -1,27 +1,15 @@
-#include<unordered_map>
-class Solution
-{
+class Solution {
 public:
-    vector<int>twoSum(vector<int>& nums,int target)
-    {
-        unordered_map<int,int> hashMap;
-        int n=nums.size();
-        for(int i=0;i<n;i++)
-        {
-            hashMap[nums[i]]=i;
-        }
-        vector<int> v;
-        for(int i=0;i<n;i++)
-        {
-            int comp=target-nums[i];
-            auto j=hashMap.find(comp);
-            if(j!=hashMap.end() && (j->second)!=i)
-            {
-                v.push_back(i);
-                v.push_back(j->second);
-                break;
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int n = nums.size();
+        unordered_map<int,int>mp;
+        for(int i=0;i<n;i++){
+            int need = target - nums[i];
+            if(mp.find(need) != mp.end()){
+                return {mp[need],i};
             }
+            mp[nums[i]] = i;
         }
-        return v;
+        return {-1};
     }
 };
