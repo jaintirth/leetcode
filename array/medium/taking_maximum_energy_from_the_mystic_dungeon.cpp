@@ -11,6 +11,7 @@ public:
         for(int i=0; i<n; i++){
             if((i-k)>=0){
                 sumEnergy[i] = sumEnergy[i-k] - energy[i-k];
+                result = max(result, sumEnergy[i]);
                 continue;
             }
             sum = energy[i];
@@ -18,8 +19,8 @@ public:
                 sum += energy[j];
             }
             sumEnergy[i] = sum;
+            result = max(result, sumEnergy[i]);
         }
-        sort(sumEnergy.rbegin(), sumEnergy.rend());
-        return sumEnergy[0];
+        return result;
     }
 };
